@@ -4,35 +4,56 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
-using namespace std;
+#include <vector>
+#include<sstream>
 #pragma warning(suppress : 4996)
 
-struct table_entry {
-    string name;
-    string surname;
-    int age;
-    string address;
-    string plz;
-    string phone_no;
-
-
+struct Table_entry {
+    std::string name;
+    std::string surname;
+    std::string age;
+    std::string address;
+    std::string plz;
+    std::string phone_no;
 };
+
+//std::vector<Table_entry> fill_up_array(vector<string> &data_to_store, File &fp) {}
+/*
+std::ostream& operator<<(ostream& stream, const Table_entry& table_entry) {
+    stream << table_entry.name << " | " << table_entry.surname
+        << " | " << table_entry.age << " | " << table_entry.age
+        << " | " << table_entry.address << " | " << table_entry.plz
+        << " | " << table_entry.phone_no << endl;
+
+}
+*/
+
 int main()
 {
+    std::vector<Table_entry> table_entries;
+    std::vector<std::string> data_to_store;
+    
     FILE* fp;
     char c=NULL;
     fp=fopen("data.csv","r");
-
+    std::string data="";
     while (c != EOF) {
-        
-        while (c != '\n') {
-
-        }
         c = fgetc(fp);
-        printf("%c", c);
+        data.push_back(c); 
     }
     fclose(fp);
+    //data_to_store.push_back(current);
+    std::stringstream s(data);
 
+    while (std::getline(s, data, ';')) {
+        data_to_store.push_back(data);
+    }
+    
+    for (std::string s : data_to_store) {
+        std::cout << s << std::endl;
+    }
+    
+    
     return 0;
 
 }
