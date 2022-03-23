@@ -11,9 +11,13 @@ class CSVFormater
 		int load_Data_From_File();
 		const char* get_file_path() ;
 		const char* get_file_data();
+		void count_columns();
+		int get_column_count();
 	private:
+		int column_count;
 		int file_size=0;
 		char* file_data=NULL;
 		char* file_path=NULL;
 		int length_title=0;
+		
 };

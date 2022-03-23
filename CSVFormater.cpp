@@ -34,6 +34,30 @@ int CSVFormater::load_Data_From_File()
 	else return 0;	// FAIL
 }
 
+void CSVFormater::count_columns() 
+{
+	int temp_column_count=0;
+	char temp=file_data[0];
+
+	
+	for (int i=0; i < file_size; i++) {
+		temp = file_data[i];
+			
+		if (temp == '\n') {
+			break;
+		}
+		if (temp == ';') {
+			temp_column_count++;
+		}
+		
+	}
+	column_count = temp_column_count + 1;
+}
+
+int CSVFormater::get_column_count()
+{
+	return column_count;
+}
 const char *CSVFormater::get_file_path()
 {
 	return file_path;
